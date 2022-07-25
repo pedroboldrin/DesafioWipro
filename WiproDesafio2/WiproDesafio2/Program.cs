@@ -24,6 +24,7 @@ while (true) {
     ItemDto itemDto = await obterItem();
 
     if (itemDto.error != null) { 
+        Console.WriteLine($"{itemDto.error}\n Entrando em modo de espera.");
         await Task.Delay(120000);
     } else {
         List<CsvMoeda> itensNovoCsv = csvMoedas.Where(a => a.ID_MOEDA == itemDto.moeda && a.DATA_REF >= itemDto.data_inicio && a.DATA_REF <= itemDto.data_fim).ToList();
@@ -35,6 +36,7 @@ while (true) {
 
         gerarNovoCsv();
 
+        Console.WriteLine("CSV criado com sucesso na pasta: C:\\Users\\Public \nEntrando em modo de espera.");
         await Task.Delay(120000);
 
         void gerarNovoCsv() {
