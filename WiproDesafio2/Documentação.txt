@@ -1,0 +1,1 @@
+Caminho para onde os CSV são criados: C:\Users\Public
