@@ -1,0 +1,20 @@
+-- Pergunta 1
+SELECT  Count(tb_Processo.idStatus) as 'IdStatus', tb_Status.dsStatus 
+FROM tb_Processo
+INNER JOIN tb_Status ON tb_Processo.idStatus=tb_Status.idStatus
+Group by tb_Status.dsStatus
+
+-- Pergunta 2
+SELECT max(tb_Andamento.DtAndamento) as 'DtAndamento' FROM tb_Andamento
+inner join tb_Processo on tb_Andamento.idProcesso = tb_Processo.idProcesso
+where tb_Processo.DtrEncerramento between '01/01/2013' and '31/12/2013'
+Group by tb_Processo.nroProcesso
+order by Count (*) desc
+
+-- pergunta 3
+Select Count(DtrEncerramento) as 'Quantidade DtrEncerramento' from tb_Processo
+group by DtrEncerramento
+Having Count(*) > 5
+
+-- pergunta 4
+select REPLICATE('0', 12 -LEN(nroProcesso))+RTrim(nroProcesso) from tb_Processo
